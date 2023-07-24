@@ -13,7 +13,7 @@ public class DBTestSetUp {
 
 	static {
 		try {
-			conn = DriverManager.getConnection("jdbc:h2:./h2/db", "sa", "sa");
+			conn = DriverManager.getConnection("jdbc:h2:./h2/db", "sa", "");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -23,7 +23,7 @@ public class DBTestSetUp {
 		return conn;
 	}
 
-	private static StringBuilder ddlScript;
+	private static StringBuilder ddlScript = new StringBuilder();
 
 	static {
 		try {
@@ -37,7 +37,7 @@ public class DBTestSetUp {
 		}
 	}
 
-	private static StringBuilder dmlScript;
+	private static StringBuilder dmlScript = new StringBuilder();
 
 	static {
 		try {
@@ -53,6 +53,7 @@ public class DBTestSetUp {
 
 	public static void RUN_DDL() {
 		try {
+			conn.prepareStatement("DROP ALL OBJECTS").executeUpdate();
 			conn.prepareStatement(ddlScript.toString()).executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -40,3 +40,6 @@ replay_pid*
 **/target/
 **/bin/
 **/META-INF/**
+
+# H2
+./h2/

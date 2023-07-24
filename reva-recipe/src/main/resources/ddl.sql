@@ -1,0 +1,5 @@
+create table recipe (
+    id serial primary key,
+    name varchar(255) not null unique,
+    instructions varchar not null
+);
